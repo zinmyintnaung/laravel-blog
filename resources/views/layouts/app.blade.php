@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -74,18 +75,26 @@
         
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            
-                            <a href="/home">Home</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="/post/create">Create new post</a>
-                            
-                        </li>
-                    </ul>
-                </div>
+
+                @if(Auth::check())
+                    <div class="col-lg-4">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="{{ route('home') }}">Home</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('categories') }}">Categories</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('post.create') }}">Create new post</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('category.create') }}">Create new category</a>
+                            </li>
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="class col-lg-8">
                     @yield('content')
                 </div>
@@ -96,5 +105,13 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+
+    <script>
+        @if(Session::has('success'))
+            toastr.success(" {{ Session::get('success')}} ")
+        @endif
+    </script>
+
 </body>
 </html>
