@@ -57,7 +57,7 @@ class PostsController extends Controller
         $post = Post::create([
             'title'=>$request->title,
             'content'=>$request->content,
-            'featured'=>'uploads/posts/'.$featured_new_name,
+            'featured'=>'/uploads/posts/'.$featured_new_name,
             'category_id'=>$request->category_id,
             'slug'=>str_slug($request->title)
         ]);
@@ -109,6 +109,29 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        Session::flash('success', 'The post was just trashed.');
+        return redirect()->back();
+    }
+
+    public function trashed(){
+        $posts = Post::onlyTrashed()->get();
+        return view('admin.posts.trashed')->with('posts', $posts);
+    }
+
+    public function kill($id){
+        //$post = Post::find($id); -> find by ID will not work here coz the post we are looking is already trashed by Laravel eloquent
+        $post = Post::withTrashed()->where('id', $id)->first();
+        $post->forceDelete();
+        Session::flash('success', 'The post deleted permantly');
+        return redirect()->back();
+    }
+
+    public function restore($id){
+        $post = Post::withTrashed()->where('id', $id)->first();
+        $post->restore();
+        Session::flash('success', 'Post restored successfully');
+        return redirect()->route('posts');
     }
 }

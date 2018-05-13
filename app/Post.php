@@ -16,6 +16,9 @@ class Post extends Model
 
     protected $dates = ['deleted_at'];
 
+    public function getFeaturedAttributes($featured){
+        return asset($featured);
+    }
     public function category(){
         return $this->belongsTo('App\Category');
     }
