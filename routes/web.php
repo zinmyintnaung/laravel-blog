@@ -153,5 +153,14 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
         'uses' => 'UsersController@not_admin',
         'as'=>'user.not.admin'
     ]);
+
+    Route::get('/user/profile', [
+        'uses' => 'ProfilesController@index',
+        'as'=>'user.profile'
+    ]);
+    Route::post('/user/profile/update', [ //Not required to pass ID param coz we can use current user ID to update profile
+        'uses' => 'ProfilesController@update',
+        'as'=>'user.profile.update'
+    ]);
 });
 
