@@ -13,6 +13,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
+
+    @yield('styles')
+    
 </head>
 <body>
     <div id="app">
@@ -140,5 +143,9 @@
         @endif
     </script>
 
+    <!-- Summernote editor for post create form -->
+    <!-- include summernote css/js -->
+        @yield('scripts')
+        
 </body>
 </html>

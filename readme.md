@@ -3,4 +3,5 @@
 <ul>
     <li>Laravel auth system</li>
     <li>Toastr for displaying toast messages</li>
+    <li>summernote.org for WYSIWYG editor</li>
 </ul>

@@ -93,13 +93,13 @@ class ProfilesController extends Controller
         $user->profile->youtube = $request->youtube;
         $user->profile->about = $request->about;
 
-        if($request->has('password')){
+        if(isset($request->password)){
             $user->password = bcrypt($request->password);
         }
         
         $user->save();
         $user->profile->save();
-
+       
         Session::flash('success', 'Profile updated successfully');
         
         return redirect()->back();
