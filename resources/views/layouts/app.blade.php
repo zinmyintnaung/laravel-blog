@@ -145,7 +145,7 @@
 
     <!-- Summernote editor for post create form -->
     <!-- include summernote css/js -->
-        @yield('scripts')
+    @yield('scripts')
         
 </body>
 </html>
