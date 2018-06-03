@@ -13,22 +13,22 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="site_name">Site Name</label>
-                    <input type="text" name="site_name" value="{{ setting->site_name }}" class="form-contrl">
+                    <input type="text" name="site_name" value="{{ $setting->site_name }}" class="form-contrl">
                 </div>
 
                 <div class="form-group">
                     <label for="contact_number">Contact</label>
-                    <input type="text" name="contact_number" value="{{ setting->contact_number }}" class="form-contrl">
+                    <input type="text" name="contact_number" value="{{ $setting->contact_number }}" class="form-contrl">
                 </div>
 
                 <div class="form-group">
                     <label for="contact_email">Email</label>
-                    <input type="email" name="contact_email" value="{{ setting->contact_email }}" class="form-contrl">
+                    <input type="email" name="contact_email" value="{{ $setting->contact_email }}" class="form-contrl">
                 </div>
 
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" name="address" value="{{ setting->address }}" class="form-contrl">
+                    <input type="text" name="address" value="{{ $setting->address }}" class="form-contrl">
                 </div>
 
                 <div class="form-group">
