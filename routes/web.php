@@ -25,6 +25,25 @@ Route::get('/post/{slug}', [
     'as'=>'post.single'
 ]);
 
+Route::get('/category/{id}', [
+    'uses' => 'FrontEndController@category',
+    'as' => 'category.single'
+]);
+
+Route::get('/tag/{id}', [
+    'uses' => 'FrontEndController@tag',
+    'as' => 'tag.single'
+]);
+
+//For search result route, we will just create a closure instead of having controller
+Route::get('/results', function(){
+    $posts = \App\Post::where('title', 'like', '%'.request('query').'%')->get();
+    return view('results')->with('posts', $posts)
+                          ->with('title', 'Search result: '.request('query'))
+                          ->with('settings', \App\Setting::first())
+                          ->with('categories', \App\Category::take(5)->get());
+
+});
 
 Auth::routes();
 
